@@ -35,3 +35,16 @@ int readWordsfromFile(string filename, string words[], int maxWords){
     
     return Wordcount;
 }
+
+int buildMarkovChain(const string words[], int numWords, int order, string prefixes[], string suffixes[], int maxChainSize){
+    int count = 0;
+    for(int i= 0; i <=(numWords - order - 1); i++){
+        prefixes[count] += joinWords(words, i, order);
+        cout << "Prefix: " << joinWords(words, i, order) << endl;
+
+        suffixes[count] += words[i + order];
+        cout << "Suffix: " << words[i + order] << endl;
+
+        count++;
+    }
+    return count;
