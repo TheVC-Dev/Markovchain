@@ -20,5 +20,10 @@ int main(){
         cout << words[i] << endl;
     }
 
+    int chainSize = buildMarkovChain(words, count, orderInp, prefixes, suffixes, 10000);
+    cout << "chainsize: " << chainSize << endl;
+
+    generateText(prefixes, suffixes, chainSize, orderInp, wordnumInp);
+
     return 0;
 }
