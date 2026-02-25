@@ -90,3 +90,32 @@ string getRandomPrefix(const string prefixes[], int chainSize){
 
     return prefixes[randomIndex];
 }
+
+string generateText(const string prefixes[], const string suffixes[], int chainSize, int order, int numWords){
+    string result[chainSize];
+    string updateSuffix;
+    string currentPrefix;
+
+    for (int i = 0; i < numWords; i++){
+        if(i == 0){
+            currentPrefix = getRandomPrefix(prefixes, chainSize);
+            result[0] = currentPrefix;
+            cout << "first prefix: " << result[0] << endl;
+        }else{
+            updateSuffix = getRandomSuffix(prefixes, suffixes, chainSize, currentPrefix);
+            if(updateSuffix != "no match"){
+                result[i] = updateSuffix;
+                currentPrefix = updateSuffix;
+            }else{break;}
+        }
+
+    }
+
+
+    cout << "first result: " << result[0] << endl; 
+    for (int i = 0; i < numWords; i++){
+        cout << "result: " << result[i] << endl;
+    }
+
+    return "";
+}
