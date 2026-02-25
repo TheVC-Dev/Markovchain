@@ -48,3 +48,45 @@ int buildMarkovChain(const string words[], int numWords, int order, string prefi
         count++;
     }
     return count;
+}
+
+string getRandomSuffix(const string prefixes[], const string suffixes[], int chainSize, string currentPrefix){
+    int matchcount = 0;
+    cout << "cainsize: " << chainSize << endl;
+    string matches[chainSize];
+
+    for(int i = 0; i < (chainSize); i++){
+
+        cout << "suffixes: " << suffixes[i] << endl;
+        if (currentPrefix == prefixes[i]){
+            cout << currentPrefix << "==" << prefixes[i] << "   adding:  " << suffixes[i] << endl;
+            matches[matchcount] += suffixes[i];
+            matchcount++;
+        }
+    }
+
+    if(matchcount){
+        int pick = rand() % matchcount;
+        
+        cout << "matches: ";
+        for (int i = 0; i < matchcount; i++){
+            cout << matches[i] << ", ";
+        }
+        cout << endl;
+
+        cout << "Randum index: " << pick << endl;
+        cout << "choosing:... "  << matches[pick] << endl;
+        string random_matching_index = matches[pick];
+
+        return random_matching_index;
+    }else{return "no match";}
+}
+
+string getRandomPrefix(const string prefixes[], int chainSize){
+    int randomIndex = rand() % chainSize;
+
+    cout << "random prefix index: " << randomIndex << endl;
+    cout << "random prefix: " << prefixes[randomIndex] << endl;
+
+    return prefixes[randomIndex];
+}
